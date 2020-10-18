@@ -3,7 +3,8 @@ class BemVindo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            contador: 0
+            contador: 0,
+            hora: '00:00:00'
         };
         this.aumentar = this.aumentar.bind(this);
         this.diminuir = this.diminuir.bind(this);
@@ -25,6 +26,16 @@ class BemVindo extends Component {
         }
     }
 
+    componentDidMount() { //AO FINALIZAR O CARREGAMENTO DA TELA EXECUTA
+        setInterval(() => {
+            this.setState({ hora: new Date().toLocaleTimeString() })
+        }, 2000);
+    }
+
+    componentDidUpdate() {//SEMPRE QUE O STATE FOR ATUALIZADO EXECUTA
+        //alert("Atualizou")
+    }
+
     render() {
         return (
             <div>
@@ -34,19 +45,19 @@ class BemVindo extends Component {
                 <button onClick={this.diminuir}>-</button>
                     |   {this.state.contador}   |
                 <button onClick={this.aumentar}>+</button>
+                <hr />
+                <h2>Hora atual</h2>
+                <h1>{this.state.hora}</h1>
             </div>
         );
     }
 }
-
-
 
 function App() {
     return (
         <div>
             <center>
                 <BemVindo nome="Addam" />
-                <br />
                 <hr />
                 <h1>Iniciando com React em 18/10/2020</h1>
                 <hr />

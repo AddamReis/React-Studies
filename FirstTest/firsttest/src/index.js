@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App5 from './App5';
+import HTTPRequest from './HTTPRequest';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App5 />
+    <HTTPRequest />
   </React.StrictMode>,
   document.getElementById('root')
 );

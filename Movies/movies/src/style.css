@@ -1,0 +1,23 @@
+.padrao{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.app{
+    align-items: center;
+    flex-direction: column;
+}
+
+.header{
+ align-items: center;   
+ height: 60px;
+ background-color: brown;
+}
+
+.header a{
+    text-decoration: none;
+    font-size: 30px;
+    color: #FFF;
+    cursor: pointer;
+}

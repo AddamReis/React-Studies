@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import HTTPRequest from './HTTPRequest';
+import App6 from './App6';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HTTPRequest />
+    <App6 />
   </React.StrictMode>,
   document.getElementById('root')
 );

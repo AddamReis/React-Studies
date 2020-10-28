@@ -1,0 +1,71 @@
+/*CABECALHO*/
+
+.padrao{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.app{
+    align-items: center;
+    flex-direction: column;
+}
+
+.header{
+    align-items: center;   
+    height: 60px;
+    background-color: brown;
+}
+
+.header a{
+    text-decoration: none;
+    font-size: 30px;
+    color: #FFF;
+    cursor: pointer;
+}
+
+/*HOME*/
+
+.padrao2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerfilme{
+    width: 800px;
+}
+
+.listafilmes{
+    margin: 15px;
+}
+
+.listafilmes article{
+    border-radius: 5px;
+    margin: 15;
+    padding: 15px;
+}
+
+.listafilmes strong{
+    padding-bottom: 15px;
+    font-size: 20px;
+}
+
+img{
+    max-height: 350px;
+    width: 800px;
+}
+
+.listafilmes article a{
+    text-decoration: none;
+    color: #DDD;
+    font-size: 25px;
+    background-color: brown;
+    width: 100%;
+    height: 40px;
+    margin-top: -30px;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

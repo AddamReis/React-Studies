@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import Inicio from './SPA/Inicio';
+import Contato from './SPA/Contato';
+import Sobre from './SPA/Sobre';
+import './SPA/style.css';
 
-class Home extends Component {
-    render() {
-        return (
-            <div>
-                <center><h2>Home</h2></center> <br/>
-                <Link to="/sobre"> Ir para Sobre</Link>
-            </div>
-        );
-    }
+function Home() {
+    return (
+        <div>
+            <Inicio />
+            <Sobre />
+            <Contato />
+        </div>
+    );
 }
 
 export default Home;

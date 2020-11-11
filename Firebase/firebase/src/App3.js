@@ -7,56 +7,73 @@ export default class App3 extends Component {
         this.state = {
             email: '',
             senha: '',
-            nome: ''
+            user: null
         };
         this.cadastrar = this.cadastrar.bind(this);
+        this.logar = this.logar.bind(this);
+        this.auth = this.auth.bind(this);
+        this.sair = this.sair.bind(this);
+    }
 
-        firebase.auth().signOut();
+    componentDidMount() {
+        this.auth()
+    };
 
+    sair(){
+        firebase.auth().signOut().then(()=>{
+            this.setState({user: null});
+        });
+    }
+
+    auth() {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                firebase.database().ref('usuarios').child(user.uid).set({
-                    nome: this.state.nome
-                })
-                .then(()=>{
-                    this.setState({nome: '', email: '', senha: ''});
-                })
-                alert('Usuário Cadastrado! \n Email: ' + user.email);  
+                this.setState({ user });
             }
-            //alert('Usuário Logado! \n Email: ' + user.email);
-        })
+        });
     }
 
     cadastrar(e) {
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha)
             .catch((error) => {
                 alert('Código do error: ' + error.code);
-            })
+            });
+    }
 
-        e.preventDefault();
+    logar(e) {
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha)
+            .catch((error) => {
+                alert('Código do error: ' + error.code);
+            });
     }
 
     render() {
         return (
             <div>
-                <center><label>Novo usuário</label></center>
-                <hr />
-                <form onSubmit={(e)=> {this.cadastrar(e)}}>
-                    <lab>Nome</lab>
-                    <input type="text" value={this.state.nome}
-                        onChange={(e) => this.setState({ nome: e.target.value })} />
-                    <br />
-                    <lab>Email</lab>
-                    <input type="text" value={this.state.email}
-                        onChange={(e) => this.setState({ email: e.target.value })} />
-                    <br />
-                    <label>Senha</label>
-                    <input type="password" value={this.state.senha}
-                        onChange={(e) => this.setState({ senha: e.target.value })} />
-                    <br />
-                    <button type="submit">Cadastrar</button>
-                </form>
+                {this.state.user ?
+                    <div>
+                        <p>Painel Admin</p>
+                        <p>Seja Bem-Vindo :)</p>
+                        <button onClick={this.sair}>Sair</button>
+                    </div>
+                    :
+                    <div>
+                        <center><label>Seja Bem-Vindo!</label></center>
+                        <hr />
+                        <lab>Email</lab>
+                        <input type="text" value={this.state.email}
+                            onChange={(e) => this.setState({ email: e.target.value })} />
+                        <br />
+                        <label>Senha</label>
+                        <input type="password" value={this.state.senha}
+                            onChange={(e) => this.setState({ senha: e.target.value })} />
+                        <br />
+                        <button onClick={this.cadastrar}>Cadastrar</button>
+                        <button onClick={this.logar}>Logar</button>
+                    </div>
+                }
             </div>
+
         );
     }
 }

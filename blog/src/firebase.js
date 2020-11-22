@@ -21,6 +21,7 @@ class Firebase{
     constructor(){
         app.initializeApp(firebaseConfig);
 
+        //referenciando database p/ acessar de outros locais
         this.app = app.database();
     }
 

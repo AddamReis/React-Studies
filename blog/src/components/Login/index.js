@@ -16,6 +16,7 @@ class Login extends Component {
 
     entrar(e) {
         e.preventDefault();
+        this.login();
     }
 
     login = async () => {
@@ -29,9 +30,17 @@ class Login extends Component {
                         alert('Código de erro: ' + error.code);
                         return null;
                     }
-                });
+                })
+                this.props.history.replace('/dashboard');
         } catch (e) {
             alert(e.message);
+        }
+    }
+
+    componentDidMount(){
+        //verifica se tem algum usuário logado
+        if(firebase.getCurrent()){
+            return this.props.history.replace('/dashboard')
         }
     }
 

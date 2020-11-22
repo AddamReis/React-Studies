@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import firebase from '../../firebase';
+import './dashboard.css';
 
 class DashBoard extends Component {
     constructor(props) {
@@ -11,20 +12,24 @@ class DashBoard extends Component {
         this.logout = this.logout.bind(this);
     }
 
-    componentDidMount(){
-        if(!firebase.getCurrent()){
+    componentDidMount() {
+        if (!firebase.getCurrent()) {
             this.props.history.replace('/login');
             return null;
         }
-        firebase.getUserName((info)=>{
+        firebase.getUserName((info) => {
             localStorage.nome = info.val().name;
-            this.setState({nome: localStorage.nome})
+            this.setState({ nome: localStorage.nome })
         })
-
     }
 
-    logout(){
-        
+    logout = async () => {
+        await firebase.logout()
+            .catch((error) => {
+                console.log(error)
+            })
+        localStorage.removeItem("nome");
+        this.props.history.push('/');
     }
 
     render() {
@@ -34,7 +39,7 @@ class DashBoard extends Component {
                     <h1>Olá {this.state.nome}</h1>
                     <Link to="/dashboard/new">Novo Post</Link>
                 </div>
-                <p>Logado com: </p>
+                <p>Logado com: {firebase.getCurrent()}</p>
                 <button onClick={() => this.logout()}>Deslogar</button>
             </div>
         )

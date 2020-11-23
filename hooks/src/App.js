@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
 
@@ -9,6 +9,19 @@ function App() {
   ]);
 
   const [input, setInput] = useState('');
+
+  //DidMounth
+  useEffect(() => {
+    const tarefasStorage = localStorage.getItem('tarefas');
+    if(tarefasStorage){
+      setTarefas(JSON.parse(tarefasStorage.toUpperCase()));
+    }
+  }, []); //executa função somente na construção da tela
+
+  //DidUpdate
+  useEffect(() => {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  }, [tarefas]); //toda vez que ocorrer alguma alteração sobre o array de tarefas, executa a função
 
   function handleAdd() {
     setTarefas([...tarefas, input])

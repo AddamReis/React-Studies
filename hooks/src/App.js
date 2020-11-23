@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
   //DidMounth
   useEffect(() => {
     const tarefasStorage = localStorage.getItem('tarefas');
-    if(tarefasStorage){
+    if (tarefasStorage) {
       setTarefas(JSON.parse(tarefasStorage.toUpperCase()));
     }
   }, []); //executa função somente na construção da tela
@@ -30,6 +30,8 @@ function App() {
     console.log(tarefas);
   }
 
+  const totalTarefas = useMemo(() => tarefas.length, [tarefas]);
+
   return (
     <div>
       <ul>
@@ -37,7 +39,9 @@ function App() {
           <li key={data}> {data}</li>
         ))}
       </ul>
-
+      < br />
+      <strong>Você tem {totalTarefas} tarefas!</strong>
+      < br />
       <input type="text" value={input} onChange={e => setInput(e.target.value)} />
       <button type="button" onClick={handleAdd}>Adicionar</button>
     </div>

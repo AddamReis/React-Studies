@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 function App() {
 
@@ -23,12 +23,10 @@ function App() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
   }, [tarefas]); //toda vez que ocorrer alguma alteração sobre o array de tarefas, executa a função
 
-  function handleAdd() {
+  const handleAdd = useCallback(() => {
     setTarefas([...tarefas, input])
     setInput('');
-
-    console.log(tarefas);
-  }
+  }, [tarefas, input]);
 
   const totalTarefas = useMemo(() => tarefas.length, [tarefas]);
 

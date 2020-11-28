@@ -1,9 +1,13 @@
-function App() {
-  return (
-    <div>
-      <h2>React With Redux</h2>
-    </div>
+import React from 'react';
+import {BrowserRouter} from 'react-router-dom';
+import Routes from './routes';
+import Header from './components/Header';
+
+export default function App(){
+  return(
+    <BrowserRouter>
+    <Header />
+      <Routes />
+    </BrowserRouter>
   );
 }
-
-export default App;

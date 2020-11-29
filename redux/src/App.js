@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import history from './server/history.js';
 import Routes from './routes';
 import Header from './components/Header';
 import { Provider } from 'react-redux';
@@ -8,10 +9,10 @@ import store from './store';
 export default function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <Header />
         <Routes />
-      </BrowserRouter>
+      </Router>
     </Provider>
   );
 }

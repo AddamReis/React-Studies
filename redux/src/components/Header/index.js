@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import './style.css';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
+    const reservSize = useSelector(state => state.reserve.length);
     return (
         <header className="container">
             <Link to="/">
@@ -13,7 +15,7 @@ export default function Header() {
             <Link className="reserva" to="/reservas">
                 <div>
                     <strong>Minhas Reservas</strong>
-                    <span>0 reservas</span>
+                    <span>{reservSize} reservas</span>
                 </div>
             </Link>
         </header>

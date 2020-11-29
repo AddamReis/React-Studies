@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import api from '../../server/api';
 import { MdFlightTakeoff } from 'react-icons/md';
 import './style.css';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addReserve } from '../../store/modules/reserve/actions';
 
 export default function Home() {
     const dispath = useDispatch();
     const [trips, setTrips] = useState([]);
+
+    function handleAdd(trip) {
+        dispath(addReserve(trip));
+    };
 
     useEffect(() => {
         async function loadApi() {
@@ -17,13 +22,6 @@ export default function Home() {
         loadApi();
 
     }, []);
-
-    function handleAdd(trip){
-        dispath({
-            type: 'ADD_RESERVE',
-            trip
-        });
-    };
 
     return (
         <div className="box">

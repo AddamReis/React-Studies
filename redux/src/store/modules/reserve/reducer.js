@@ -15,12 +15,8 @@ export default function reserve(state = [], action) {
                     draft.splice(tripIndex, 1);
                 }
             });
-        case 'UPDATE_AMOUNT':
+        case 'UPDATE_RESERVE_SUCESS':
             {
-                if (action.amount <= 0) {
-                    return state;
-                }
-
                 return produce(state, draft => {
                     const tripIndex = draft.findIndex(trip => trip.id === action.id);
 
